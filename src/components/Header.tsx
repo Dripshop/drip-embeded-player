@@ -15,24 +15,26 @@ const Header: React.FC = () => {
   return (
     <>
       <Container className="bg-blue-600 text-white">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="text-2xl font-bold">
+        <div className="flex items-center justify-between flex-wrap">
+          <div className="flex items-center space-x-4 w-4/5">
+            <div className="text-2xl font-bold rounded-full hover:bg-[#001e60] cursor-pointer p-2">
               <img src={WallMartLogo} alt="Walmart Logo" className="h-8" />
             </div>
-            <div className="flex-1 max-w-2xl">
+            <div className="w-full ml-8">
               <div className="relative bg-white rounded-full shadow-sm focus:border-blue-500">
                 <input
                   type="text"
                   placeholder="Search everything at Walmart online and in store"
-                  className="w-full py-2 px-4 pr-12 rounded-full text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full py-3 px-4 pr-12 rounded-full text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <Search className="absolute right-4 top-2 w-5 h-5 text-gray-500 cursor-pointer" />
+                <div className="absolute right-2 top-1.5 w-8 h-8 text-gray-500 cursor-pointer bg-[#002e99] rounded-full flex items-center justify-center">
+                  <Search size={20} color="white" />
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-6 w-1/5 justify-end">
             <div className="flex items-center space-x-1 gap-x-1">
               <Heart className="w-5 h-5" />
               <div className="hidden md:flex flex-col items-start">
@@ -65,7 +67,7 @@ const Header: React.FC = () => {
           <span className="text-sm">Departments</span>
           <ChevronDown className="w-4 h-4" />
         </div>
-        <div className="flex items-center space-x-1 cursor-pointer">
+        <div className="flex items-center space-x-1cursor-pointer">
           <LayoutGrid size={16} />
           <span className="text-sm">Services</span>
           <ChevronDown className="w-4 h-4" />

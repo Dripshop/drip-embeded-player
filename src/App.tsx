@@ -1,7 +1,18 @@
+import { Share } from "lucide-react";
 import { useState } from "react";
+import MainLayout from "./MainLayout";
+import Button from "./components/Button";
+import Container from "./components/Container";
 
 const baseUrl = "https://www.feat-dinesh-1.dripshop-feature-branch.live";
-const streams = [
+
+type Stream = {
+  slug: string;
+  title: string;
+  date: string;
+  image: string;
+};
+const streams: Stream[] = [
   {
     slug: "17d4117f-f478-4ef0-81a7-e40ecf386146",
     title: "Sameep going live",
@@ -22,10 +33,11 @@ const streams = [
   },
 ];
 
-function StreamCard({ stream, onClick }) {
+function StreamCard({ stream, onClick }: { stream: Stream; onClick: () => void }) {
   return (
     <div
       className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
+      role="button"
       onClick={onClick}
     >
       <div className="relative">
@@ -45,32 +57,41 @@ function StreamCard({ stream, onClick }) {
 }
 
 function App() {
-  const [activeStream, setActiveStream] = useState(streams[0].slug);
+  const [activeStream, setActiveStream] = useState<Stream>(streams[0]);
 
   return (
-    <div>
-      <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden mt-8">
-        <div className="relative bg-gray-800 aspect-video">
+    <MainLayout>
+      <Container className="bg-white py-6 flex items-center justify-between">
+        <h1 className="text-black text-2xl font-semibold">
+          {activeStream.title}
+        </h1>
+        <Button className="flex items-center gap-2">
+          <Share size={16} /> Share
+        </Button>
+      </Container>
+      <Container className="bg-[#f0f5ff] p-4">
+        <div className="aspect-video w-[100%] mx-auto">
           <iframe
             id="drip-player-1"
+            // @ts-ignore
             type="text/html"
             width="100%"
             height="100%"
+            className="mx-auto rounded"
             name="Drip - Shop Live"
-            src={`${baseUrl}/stream-embedded/${activeStream}`}
+            src={`${baseUrl}/stream-embedded/${activeStream.slug}`}
             frameBorder="0"
             allowFullScreen
             allowPaymentRequest
-          ></iframe>
+          />
         </div>
-      </div>
-
-      <div className="max-w-6xl mx-auto mt-8 px-4">
+      </Container>
+      <Container className="mt-8 px-4">
         <h2 className="text-2xl font-bold mb-6">More streams</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
           {streams.map((stream) => {
-            if (stream.slug === activeStream) {
+            if (stream.slug === activeStream.slug) {
               return null; // Skip the active stream
             }
 
@@ -78,13 +99,19 @@ function App() {
               <StreamCard
                 key={stream.slug}
                 stream={stream}
-                onClick={() => setActiveStream(stream.slug)}
+                onClick={() => setActiveStream(stream)}
               />
             );
           })}
         </div>
-      </div>
-    </div>
+      </Container>
+      <Container className="bg-[#f0f5ff] py-6 text-center">
+        <div className="flex flex-col items-center gap-4">
+          <p className="font-normal text-md">We’d love to hear what you think!</p>
+          <Button>Give feedback</Button>
+        </div>
+      </Container>
+    </MainLayout>
   );
 }
 

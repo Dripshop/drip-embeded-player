@@ -67,7 +67,7 @@ const Header: React.FC = () => {
           <span className="text-sm">Departments</span>
           <ChevronDown className="w-4 h-4" />
         </div>
-        <div className="flex items-center space-x-1cursor-pointer">
+        <div className="flex items-center space-x-1 cursor-pointer">
           <LayoutGrid size={16} />
           <span className="text-sm">Services</span>
           <ChevronDown className="w-4 h-4" />

@@ -6,12 +6,44 @@ import {
   ShoppingCart,
   User,
 } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
 import WallMartLogo from "../assets/wallmart-icon.svg";
 import WallmartLiveIcon from "../assets/wallmart-live.png";
 import Container from "./Container";
 
 const Header: React.FC = () => {
+  const [cart, setCart] = React.useState<
+    Array<{ id: number; quantity: number; price: number }>
+  >([]);
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data.type === "addToCart" && event.data.data?.item) {
+        const item = event.data.data.item;
+        setCart((prevCart) => {
+          const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
+          if (existingItem) {
+            return prevCart.map((cartItem) =>
+              cartItem.id === existingItem.id
+                ? { ...cartItem, quantity: cartItem.quantity + 1 }
+                : cartItem
+            );
+          } else {
+            return [...prevCart, { ...item, quantity: 1 }];
+          }
+        });
+      }
+    };
+
+    window.addEventListener("message", handleMessage);
+
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
+
+  const cartTotal = cart.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+
   return (
     <>
       <Container className="bg-blue-600 text-white">
@@ -53,10 +85,12 @@ const Header: React.FC = () => {
               <div className="relative">
                 <ShoppingCart className="w-5 h-5" />
                 <span className="bg-yellow-400 text-blue-900 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold absolute top-[-6px] right-[-15px]">
-                  1
+                  {cart.length}
                 </span>
               </div>
-              <div className="hidden md:inline text-sm font-thin">$0.00</div>
+              <div className="hidden md:inline text-sm font-thin">
+                ${cartTotal.toFixed(2)}
+              </div>
             </div>
           </div>
         </div>

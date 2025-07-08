@@ -1,8 +1,9 @@
-import { useAtom } from "jotai";
-import { cartAtom, CartItem } from "./state";
+import { useAtom, useSetAtom } from "jotai";
+import { cartAtom, CartItem, showCheckoutPopupAtom } from "./state";
 
 export const useCart = () => {
   const [cart, setCart] = useAtom(cartAtom);
+  const setShowCheckoutPopup = useSetAtom(showCheckoutPopupAtom);
 
   const addToCart = (item: CartItem) => {
     setCart((prev) => {
@@ -36,6 +37,10 @@ export const useCart = () => {
     return cart.some((item) => item.id === id);
   };
 
+  const openCheckout = () => {
+    setShowCheckoutPopup(true);
+  };
+
   return {
     cart,
     addToCart,
@@ -43,5 +48,6 @@ export const useCart = () => {
     updateQuantity,
     clearCart,
     isItemInCart,
+    openCheckout,
   };
 };

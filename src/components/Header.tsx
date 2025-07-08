@@ -15,7 +15,7 @@ import { GoLiveUrl } from "../config";
 import { useCart } from "../useCart";
 
 const Header: React.FC = () => {
-  const { cart, addToCart, removeFromCart } = useCart();
+  const { cart, addToCart, removeFromCart, openCheckout } = useCart();
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -80,7 +80,10 @@ const Header: React.FC = () => {
                 <span className="text-sm font-bold">Account</span>
               </div>
             </div>
-            <div className="flex flex-col items-center space-x-1 gap-x-1">
+            <div
+              className="flex flex-col items-center space-x-1 gap-x-1 cursor-pointer"
+              onClick={() => openCheckout()}
+            >
               <div className="relative">
                 <ShoppingCart className="w-5 h-5" />
                 <span className="bg-yellow-400 text-blue-900 rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold absolute top-[-6px] right-[-15px]">

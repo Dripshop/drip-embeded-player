@@ -4,10 +4,7 @@ import Button from "./components/Button";
 import Container from "./components/Container";
 import { useAtomValue } from "jotai";
 import { currentUserIdAtom } from "./state";
-import { UserAccounts } from "./config";
-
-const baseUrl = "https://www.feat-dinesh-1.dripshop-feature-branch.live";
-// const baseUrl = "http://localhost:3000"
+import { DRIP_BASE_URL, UserAccounts } from "./config";
 
 type Stream = {
   slug: string;
@@ -72,8 +69,8 @@ function App() {
     [currentUserId]
   );
   const [activeStream, setActiveStream] = useState<Stream>(streams[0]);
-  const iframeUrl = `${baseUrl}/stream-embedded/${activeStream.slug}`;
-  const redirectUrl = `${baseUrl}/redirect?continue=${encodeURIComponent(
+  const iframeUrl = `${DRIP_BASE_URL}/stream-embedded/${activeStream.slug}`;
+  const redirectUrl = `${DRIP_BASE_URL}/redirect?continue=${encodeURIComponent(
     iframeUrl
   )}&token=${currentUser?.token}`;
 

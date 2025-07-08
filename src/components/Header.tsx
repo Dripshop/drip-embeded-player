@@ -11,6 +11,7 @@ import WallMartLogo from "../assets/wallmart-icon.svg";
 import WallmartLiveIcon from "../assets/wallmart-live.png";
 import Container from "./Container";
 import SwitchUserToggle from "./SwicthUserToggle";
+import { GoLiveUrl } from "../config";
 
 const Header: React.FC = () => {
   const [cart, setCart] = React.useState<
@@ -120,10 +121,17 @@ const Header: React.FC = () => {
         </div>
         <div className="flex gap-2 items-center">
           <SwitchUserToggle />
-          <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#8A2BE2] text-white font-semibold shadow-md hover:brightness-110 transition text-xs">
-            <span>⚡</span>
-            <span>Go Live Direct</span>
-          </button>
+          <a
+            href={GoLiveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer"
+          >
+            <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#8A2BE2] text-white font-semibold shadow-md hover:brightness-110 transition text-xs cursor-pointer">
+              <span>⚡</span>
+              <span>Go Live Direct</span>
+            </button>
+          </a>
         </div>
       </Container>
     </>

@@ -10,6 +10,7 @@ import React, { useEffect } from "react";
 import WallMartLogo from "../assets/wallmart-icon.svg";
 import WallmartLiveIcon from "../assets/wallmart-live.png";
 import Container from "./Container";
+import SwitchUserToggle from "./SwicthUserToggle";
 
 const Header: React.FC = () => {
   const [cart, setCart] = React.useState<
@@ -21,7 +22,9 @@ const Header: React.FC = () => {
       if (event.data.type === "addToCart" && event.data.data?.item) {
         const item = event.data.data.item;
         setCart((prevCart) => {
-          const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
+          const existingItem = prevCart.find(
+            (cartItem) => cartItem.id === item.id
+          );
           if (existingItem) {
             return prevCart.map((cartItem) =>
               cartItem.id === existingItem.id
@@ -107,12 +110,17 @@ const Header: React.FC = () => {
           <ChevronDown className="w-4 h-4" />
         </div>
       </Container>
-      <Container className="bg-white border-b py-6">
-        <img
-          src={WallmartLiveIcon}
-          alt="Walmart Live"
-          className="max-w-[120px]"
-        />
+      <Container className="bg-white border-b py-6 flex items-center justify-center relative">
+        <div className="absolute left-4">
+          <img
+            src={WallmartLiveIcon}
+            alt="Walmart Live"
+            className="max-w-[120px]"
+          />
+        </div>
+        <div>
+          <SwitchUserToggle />
+        </div>
       </Container>
     </>
   );

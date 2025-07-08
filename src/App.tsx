@@ -4,7 +4,8 @@ import MainLayout from "./MainLayout";
 import Button from "./components/Button";
 import Container from "./components/Container";
 
-const baseUrl = "https://www.feat-dinesh-1.dripshop-feature-branch.live";
+// const baseUrl = "https://www.feat-dinesh-1.dripshop-feature-branch.live";
+const baseUrl = "http://localhost:3000"
 
 type Stream = {
   slug: string;
@@ -61,14 +62,14 @@ function App() {
 
   return (
     <MainLayout>
-      <Container className="bg-white py-6 flex items-center justify-between">
+      {/* <Container className="bg-white py-6 flex items-center justify-between">
         <h1 className="text-black text-2xl font-semibold">
           {activeStream.title}
         </h1>
         <Button className="flex items-center gap-2">
           <Share size={16} /> Share
         </Button>
-      </Container>
+      </Container> */}
       <Container className="bg-[#f0f5ff] p-4">
         <div className="aspect-video w-[100%] mx-auto">
           <iframe

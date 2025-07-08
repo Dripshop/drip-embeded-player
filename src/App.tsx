@@ -21,13 +21,13 @@ const streams: Stream[] = [
     image: "/sameep-stream.jpg",
   },
   {
-    slug: "embeded-live-stream",
+    slug: "embedded-stream",
     title: "Ashwin going live",
     date: "Jul 15 at 5:00pm",
     image: "/pokemon.jpg",
   },
   {
-    slug: "10928251-15ae-4db6-9f07-776b803a19cb",
+    slug: "5b1eb9c4-39a3-4a8a-a1ac-f689dd6d4e1d",
     title: "Niraj going live",
     date: "Jul 25 at 6:30pm",
     image: "/funko.jpg",

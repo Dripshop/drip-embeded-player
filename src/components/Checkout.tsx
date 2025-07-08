@@ -128,7 +128,7 @@ const CheckoutPopup = () => {
 
             <button
               onClick={handleCheckout}
-              className="w-full bg-green-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
             >
               <CreditCard size={20} />
               Proceed to Checkout
@@ -137,7 +137,7 @@ const CheckoutPopup = () => {
         )}
       </div>
     </div>
-  );
+  )
 };
 
 export default CheckoutPopup;

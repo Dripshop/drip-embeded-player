@@ -15,7 +15,7 @@ import { GoLiveUrl } from "../config";
 import { useCart } from "../useCart";
 
 const Header: React.FC = () => {
-  const { cart, addToCart } = useCart();
+  const { cart, addToCart, removeFromCart } = useCart();
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -28,6 +28,9 @@ const Header: React.FC = () => {
           image: item?.image || "",
           quantity: 1,
         });
+      } else if (event.data.type === "removeFromCart" && event.data.data?.id) {
+        const itemId = event.data.data.id;
+        removeFromCart(itemId);
       }
     };
 

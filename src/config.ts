@@ -28,4 +28,4 @@ export const DRIP_BASE_URL =
 
 export const GoLiveUrl = `${DRIP_BASE_URL}/redirect?continue=${encodeURIComponent(
   `${DRIP_BASE_URL}/host/walmart-stream-70725-meha`
-)}&token=${HostUserAccounts[0].token}`;
+)}&token=${HostUserAccounts[0].token}&reset_auth=0`;

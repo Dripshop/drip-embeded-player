@@ -72,7 +72,7 @@ function App() {
   const iframeUrl = `${DRIP_BASE_URL}/stream-embedded/${activeStream.slug}`;
   const redirectUrl = `${DRIP_BASE_URL}/redirect?continue=${encodeURIComponent(
     iframeUrl
-  )}&token=${currentUser?.token}`;
+  )}&token=${currentUser?.token}&reset_auth=0`;
 
   return (
     <MainLayout>

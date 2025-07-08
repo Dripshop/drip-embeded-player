@@ -111,7 +111,7 @@ const Header: React.FC = () => {
           <ChevronDown className="w-4 h-4" />
         </div>
       </Container>
-      <Container className="bg-white border-b py-6 flex items-center justify-center relative">
+      <Container className="bg-white py-6 flex items-center justify-center relative">
         <div className="absolute left-4">
           <img
             src={WallmartLiveIcon}

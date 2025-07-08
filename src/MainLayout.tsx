@@ -6,7 +6,7 @@ const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className="max-w-[1440px] mx-auto">{children}</main>
       <Footer />
     </>
   );

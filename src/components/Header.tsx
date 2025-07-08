@@ -118,8 +118,12 @@ const Header: React.FC = () => {
             className="max-w-[120px]"
           />
         </div>
-        <div>
+        <div className="flex gap-2 items-center">
           <SwitchUserToggle />
+          <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#8A2BE2] text-white font-semibold shadow-md hover:brightness-110 transition text-xs">
+            <span>⚡</span>
+            <span>Go Live Direct</span>
+          </button>
         </div>
       </Container>
     </>

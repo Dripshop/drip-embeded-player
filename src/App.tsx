@@ -87,10 +87,10 @@ function App() {
           />
         </div>
       </Container>
-      <Container className="mt-8 px-4">
+      <Container className="my-8 pl-0 pr-4">
         <h2 className="text-2xl font-bold mb-6">More streams</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {streams.map((stream) => {
             if (stream.slug === activeStream.slug) {
               return null; // Skip the active stream

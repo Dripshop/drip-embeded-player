@@ -5,6 +5,7 @@ import Container from "./components/Container";
 import { useAtomValue } from "jotai";
 import { currentUserIdAtom } from "./state";
 import { DRIP_BASE_URL, UserAccounts } from "./config";
+import CheckoutPopup from "./components/Checkout";
 
 type Stream = {
   slug: string;
@@ -128,6 +129,7 @@ function App() {
           <Button>Give feedback</Button>
         </div>
       </Container>
+      <CheckoutPopup />
     </MainLayout>
   );
 }

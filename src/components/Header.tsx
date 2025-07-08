@@ -12,29 +12,21 @@ import WallmartLiveIcon from "../assets/wallmart-live.png";
 import Container from "./Container";
 import SwitchUserToggle from "./SwicthUserToggle";
 import { GoLiveUrl } from "../config";
+import { useCart } from "../useCart";
 
 const Header: React.FC = () => {
-  const [cart, setCart] = React.useState<
-    Array<{ id: number; quantity: number; price: number }>
-  >([]);
+  const { cart, addToCart } = useCart();
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (event.data.type === "addToCart" && event.data.data?.item) {
         const item = event.data.data.item;
-        setCart((prevCart) => {
-          const existingItem = prevCart.find(
-            (cartItem) => cartItem.id === item.id
-          );
-          if (existingItem) {
-            return prevCart.map((cartItem) =>
-              cartItem.id === existingItem.id
-                ? { ...cartItem, quantity: cartItem.quantity + 1 }
-                : cartItem
-            );
-          } else {
-            return [...prevCart, { ...item, quantity: 1 }];
-          }
+        addToCart({
+          id: item?.id.toString() || "",
+          name: item?.name || "",
+          price: item?.price || 0,
+          image: item?.image || "",
+          quantity: 1,
         });
       }
     };

@@ -22,9 +22,9 @@ export const HostUserAccounts = [
   },
 ];
 
-// export const DRIP_BASE_URL =
-//   "https://www.feat-shripal-1.dripshop-feature-branch.live";
-export const DRIP_BASE_URL = "http://localhost:3000"
+export const DRIP_BASE_URL =
+  "https://www.feat-shripal-1.dripshop-feature-branch.live";
+// export const DRIP_BASE_URL = "http://localhost:3000"
 
 export const GoLiveUrl = `${DRIP_BASE_URL}/redirect?continue=${encodeURIComponent(
   `${DRIP_BASE_URL}/host/walmart-stream-70725-meha`

@@ -14,7 +14,7 @@ type Stream = {
 };
 const streams: Stream[] = [
   {
-    slug: "d0eb3fa7-810f-438c-8a35-7acfde7a571d",
+    slug: "walmart-stream-70725-meha",
     title: "Sameep going live",
     date: "Jul 20 at 4:30pm",
     image: "/sameep-stream.jpg",

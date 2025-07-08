@@ -4,8 +4,8 @@ import MainLayout from "./MainLayout";
 import Button from "./components/Button";
 import Container from "./components/Container";
 
-// const baseUrl = "https://www.feat-dinesh-1.dripshop-feature-branch.live";
-const baseUrl = "http://localhost:3000"
+const baseUrl = "https://www.feat-dinesh-1.dripshop-feature-branch.live";
+// const baseUrl = "http://localhost:3000"
 
 type Stream = {
   slug: string;

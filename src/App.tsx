@@ -1,8 +1,10 @@
-import { Share } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import MainLayout from "./MainLayout";
 import Button from "./components/Button";
 import Container from "./components/Container";
+import { useAtomValue } from "jotai";
+import { currentUserIdAtom } from "./state";
+import { UserAccounts } from "./config";
 
 const baseUrl = "https://www.feat-dinesh-1.dripshop-feature-branch.live";
 // const baseUrl = "http://localhost:3000"
@@ -34,7 +36,13 @@ const streams: Stream[] = [
   },
 ];
 
-function StreamCard({ stream, onClick }: { stream: Stream; onClick: () => void }) {
+function StreamCard({
+  stream,
+  onClick,
+}: {
+  stream: Stream;
+  onClick: () => void;
+}) {
   return (
     <div
       className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
@@ -58,7 +66,16 @@ function StreamCard({ stream, onClick }: { stream: Stream; onClick: () => void }
 }
 
 function App() {
+  const currentUserId = useAtomValue(currentUserIdAtom);
+  const currentUser = useMemo(
+    () => UserAccounts.find((user) => user.id === currentUserId),
+    [currentUserId]
+  );
   const [activeStream, setActiveStream] = useState<Stream>(streams[0]);
+  const iframeUrl = `${baseUrl}/stream-embedded/${activeStream.slug}`;
+  const redirectUrl = `${baseUrl}/redirect?continue=${encodeURIComponent(
+    iframeUrl
+  )}&token=${currentUser?.token}`;
 
   return (
     <MainLayout>
@@ -80,7 +97,7 @@ function App() {
             height="100%"
             className="mx-auto rounded"
             name="Drip - Shop Live"
-            src={`${baseUrl}/stream-embedded/${activeStream.slug}`}
+            src={redirectUrl}
             frameBorder="0"
             allowFullScreen
             allowPaymentRequest
@@ -108,7 +125,9 @@ function App() {
       </Container>
       <Container className="bg-[#f0f5ff] py-6 text-center">
         <div className="flex flex-col items-center gap-4">
-          <p className="font-normal text-md">We’d love to hear what you think!</p>
+          <p className="font-normal text-md">
+            We’d love to hear what you think!
+          </p>
           <Button>Give feedback</Button>
         </div>
       </Container>

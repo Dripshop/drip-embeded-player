@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import { useAtom } from "jotai";
+import { currentUserIdAtom } from "../state";
+import { UserAccounts } from "../config";
 
 const SwitchUserToggle = () => {
-  const [activeUser, setActiveUser] = useState("User 47");
-
-  const handleSwitch = (user: React.SetStateAction<string>) => {
-    setActiveUser(user);
-  };
+  const [currentUserId, setCurrentUserId] = useAtom(currentUserIdAtom);
 
   return (
     <div className="flex items-center gap-3">
@@ -21,17 +19,19 @@ const SwitchUserToggle = () => {
           Switch User:
         </span>
         <div className="flex gap-2">
-          {["User 47", "User 46"].map((user) => (
+          {UserAccounts.map((user) => (
             <button
-              key={user}
-              onClick={() => handleSwitch(user)}
+              key={user.id}
+              onClick={() => setCurrentUserId(user.id)}
               className={`px-4 py-1 rounded-full text-sm font-medium border transition-all duration-200 cursor-pointer
-                ${activeUser === user
-                  ? "bg-blue-600 text-white"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"}
+                ${
+                  currentUserId === user.id
+                    ? "bg-blue-600 text-white"
+                    : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
+                }
               `}
             >
-              {user}
+              {user.name}
             </button>
           ))}
         </div>
